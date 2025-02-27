@@ -264,13 +264,13 @@ footer nav ul {
 }
 
 /*Filtres galerie*/
-.filters {
+#filters {
   display: flex;
   justify-content: center;
   padding: 20px;
 }
 
-.filters button {
+#filters button {
   font-family: "Syne";
   font-weight: 700;
   color: #1d6154;
