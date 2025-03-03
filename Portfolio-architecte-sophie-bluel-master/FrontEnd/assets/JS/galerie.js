@@ -1,3 +1,5 @@
+let activeFilters = [];
+
 /*Ajout de filtres pour la galerie*/
 const selectionElement = document.querySelector("#portfolio h2");
 
@@ -8,7 +10,8 @@ function createButton(id, name) {
   button.setAttribute("data-category-id", id);
   button.addEventListener("click", () => {
     console.log(`Filtre cliqué: ${id}`);
-    filterGallery(id);
+    toggleFilter(button, id);
+    filterGallery();
   });
   return button;
 }
@@ -66,15 +69,54 @@ function filterGallery(categoryId) {
   const allWorks = document.querySelectorAll(".work");
 
   allWorks.forEach((work) => {
-    if (
-      categoryId === 0 ||
-      Number(work.dataset.categoryId) === Number(categoryId)
-    ) {
+    const workCategory = Number(work.dataset.categoryId);
+    if (activeFilters.length === 0 || activeFilters.includes(workCategory)) {
       work.style.display = "block";
     } else {
       work.style.display = "none";
     }
   });
+}
+
+/*Modification de l'affichage lors du clic du filtre*/
+function toggleFilter(button, categoryId) {
+  const allButtons = document.querySelectorAll("#filters button");
+
+  if (categoryId === 0) {
+    /* 🔹 Si le bouton "Tous" est cliqué, désactive tous les autres filtres*/
+    activeFilters = [];
+    allButtons.forEach((btn) => {
+      btn.classList.remove("active");
+      btn.style.backgroundColor = "";
+      btn.style.color = "";
+    });
+
+    // 🔹 Active uniquement le bouton "Tous"
+    button.classList.add("active");
+    button.style.backgroundColor = "#1d6154";
+    button.style.color = "white";
+  } else {
+    // 🔹 Si un autre filtre est cliqué, désactive "Tous"
+    const allButton = document.querySelector('button[data-category-id="0"]');
+    allButton.classList.remove("active");
+    allButton.style.backgroundColor = "";
+    allButton.style.color = "";
+
+    const index = activeFilters.indexOf(categoryId);
+    if (index !== -1) {
+      // 🔹 Désactive le filtre s'il est déjà actif
+      activeFilters.splice(index, 1);
+      button.classList.remove("active");
+      button.style.backgroundColor = "";
+      button.style.color = "";
+    } else {
+      // 🔹 Active le filtre si non actif
+      activeFilters.push(categoryId);
+      button.classList.add("active");
+      button.style.backgroundColor = "#1d6154";
+      button.style.color = "white";
+    }
+  }
 }
 
 afficherCategories();
