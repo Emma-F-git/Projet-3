@@ -4,9 +4,12 @@ let activeFilters = [];
 const selectionElement = document.querySelector("#portfolio h2");
 
 /*Création d'un bouton*/
-function createButton(id, name) {
+function createButton(id, name, classCSS) {
   const button = document.createElement("button");
   button.textContent = name;
+  if (classCSS) {
+    button.classList.add(classCSS);
+  }
   button.setAttribute("data-category-id", id);
   button.addEventListener("click", () => {
     console.log(`Filtre cliqué: ${id}`);
@@ -27,9 +30,9 @@ async function afficherCategories() {
     const reponse = await fetch("http://localhost:5678/api/categories");
     const categories = await reponse.json();
     console.log(categories);
-    filters.appendChild(createButton(0, "Tous"));
+    filters.appendChild(createButton(0, "Tous", "active"));
     categories.forEach((categorie) => {
-      filters.appendChild(createButton(categorie.id, categorie.name));
+      filters.appendChild(createButton(categorie.id, categorie.name, null));
     });
   } catch (error) {
     console.log("Erreur dans le filtre par catégorie: " + error.message);
@@ -93,28 +96,20 @@ function toggleFilter(button, categoryId) {
 
     /* Active uniquement le bouton "Tous"*/
     button.classList.add("active");
-    button.style.backgroundColor = "#1d6154";
-    button.style.color = "white";
   } else {
     /* Si un autre filtre est cliqué, désactive le bouton "Tous"*/
     const allButton = document.querySelector('button[data-category-id="0"]');
     allButton.classList.remove("active");
-    allButton.style.backgroundColor = "";
-    allButton.style.color = "";
 
     const index = activeFilters.indexOf(categoryId);
     if (index !== -1) {
       /* Désactive le filtre s'il est déjà actif */
       activeFilters.splice(index, 1);
       button.classList.remove("active");
-      button.style.backgroundColor = "";
-      button.style.color = "";
     } else {
       /* Active le filtre si non actif */
       activeFilters.push(categoryId);
       button.classList.add("active");
-      button.style.backgroundColor = "#1d6154";
-      button.style.color = "white";
     }
   }
 }

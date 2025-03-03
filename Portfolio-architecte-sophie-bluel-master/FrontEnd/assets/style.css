@@ -298,3 +298,8 @@ footer nav ul {
   font-size: 16px;
   height: 37px;
 }
+
+#filters button.active {
+  background-color: #1d6154;
+  color: white;
+}
