@@ -11,6 +11,7 @@ form.addEventListener("submit", async (event) => {
   console.log(password);
 
   const chargeUtile = JSON.stringify({ email, password });
+  const errorMessage = document.getElementById("errorMessage");
 
   try {
     const response = await fetch("http://localhost:5678/api/users/login", {
@@ -23,7 +24,7 @@ form.addEventListener("submit", async (event) => {
     });
 
     if (response.status !== 200) {
-      alert("Erreur dans l’identifiant ou le mot de passe");
+      errorMessage.textContent = "Erreur dans l’identifiant ou le mot de passe";
     } else {
       const data = await response.json();
       sessionStorage.setItem("token", data.token);

@@ -303,3 +303,9 @@ footer nav ul {
   background-color: #1d6154;
   color: white;
 }
+
+/*Message d'erreur lors de la connexion si login différent de celui de Sophie Bluel*/
+.error-message {
+  color: red;
+  text-align: center;
+}
