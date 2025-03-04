@@ -1,3 +1,5 @@
+/*Intégration et gestion dynamique de la page de connexion pour le site*/
+
 const form = document.querySelector("form");
 
 form.addEventListener("submit", async (event) => {
@@ -14,6 +16,7 @@ form.addEventListener("submit", async (event) => {
   const errorMessage = document.getElementById("errorMessage");
 
   try {
+    /*Envoi d'une requête POST à l'API*/
     const response = await fetch("http://localhost:5678/api/users/login", {
       method: "POST",
       headers: {
@@ -24,10 +27,11 @@ form.addEventListener("submit", async (event) => {
     });
 
     if (response.status !== 200) {
-      errorMessage.textContent = "Erreur dans l’identifiant ou le mot de passe";
+      errorMessage.textContent =
+        "Erreur dans l’identifiant ou le mot de passe"; /*Affichage d'un message d'erreur en cas d'erreur de connexion*/
     } else {
       const data = await response.json();
-      sessionStorage.setItem("token", data.token);
+      sessionStorage.setItem("token", data.token); /*stockage du token*/
       window.location.replace("index.html");
     }
   } catch (error) {

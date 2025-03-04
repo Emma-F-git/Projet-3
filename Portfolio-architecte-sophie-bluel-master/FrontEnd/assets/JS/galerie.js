@@ -1,9 +1,11 @@
-let activeFilters = [];
+/*Création des boutons dynamiques de filtres pour la galerie*/
 
-/*Ajout de filtres pour la galerie*/
+const activeFilters = [];
+
+/*Insertion des boutons de filtrage après le titre h2 portfolio*/
 const selectionElement = document.querySelector("#portfolio h2");
 
-/*Création d'un bouton*/
+/*Création d'un bouton de filtre*/
 function createButton(id, name, classCSS) {
   const button = document.createElement("button");
   button.textContent = name;
@@ -27,10 +29,13 @@ selectionElement.after(filterButton);
 async function afficherCategories() {
   const filters = document.getElementById("filters");
   try {
+    /*Récupération des données sur l'API et conversion de la réponse en format JSON*/
     const reponse = await fetch("http://localhost:5678/api/categories");
     const categories = await reponse.json();
     console.log(categories);
+    /*Création d'un bouton "tous" qui n'est pas dans l'API*/
     filters.appendChild(createButton(0, "Tous", "active"));
+    /* Boutons récupérés par l'API*/
     categories.forEach((categorie) => {
       filters.appendChild(createButton(categorie.id, categorie.name, null));
     });
@@ -43,12 +48,14 @@ const gallery = document.querySelector(".gallery");
 
 async function afficherWorks() {
   try {
+    /*Récupération des travaus sur l'API et conversion de la réponse en format JSON*/
     const reponse = await fetch("http://localhost:5678/api/works");
     const works = await reponse.json();
     /*Suppression de galerie déjà existante en HTML*/
     gallery.innerHTML = "";
     console.log(works);
 
+    /*Création dynamique des filtres*/
     works.forEach((work) => {
       const figure = document.createElement("figure");
       const image = document.createElement("img");
@@ -74,9 +81,10 @@ function filterGallery(categoryId) {
   allWorks.forEach((work) => {
     const workCategory = Number(work.dataset.categoryId);
     if (activeFilters.length === 0 || activeFilters.includes(workCategory)) {
-      work.style.display = "block";
+      work.style.display =
+        "block"; /*Affiche l'ensemble de la galerie si aucun filtre n'est actif.*/
     } else {
-      work.style.display = "none";
+      work.style.display = "none"; /*Affiche la galerie selon les filtres.*/
     }
   });
 }
