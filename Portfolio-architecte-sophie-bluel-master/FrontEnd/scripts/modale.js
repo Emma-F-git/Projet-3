@@ -2,11 +2,11 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   const token = sessionStorage.getItem("token");
-  const login = document.getElementById("login");
+  const loginButton = document.getElementById("loginButton");
 
   if (token) {
-    login.innerHTML = "logout";
-    login.addEventListener("click", (event) => {
+    loginButton.innerHTML = '<a href="#" id="logout">logout</a>';
+    document.getElementById("logout").addEventListener("click", (event) => {
       event.preventDefault();
       sessionStorage.removeItem("token");
       window.location.reload();
