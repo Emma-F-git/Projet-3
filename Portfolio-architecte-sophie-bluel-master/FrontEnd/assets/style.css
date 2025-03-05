@@ -310,8 +310,7 @@ footer nav ul {
   text-align: center;
 }
 
-#logoutButton {
+a {
   text-decoration: none;
   color: black;
-  font-size: 16.8px;
 }
