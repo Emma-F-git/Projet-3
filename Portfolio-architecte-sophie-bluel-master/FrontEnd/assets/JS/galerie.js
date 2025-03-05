@@ -48,7 +48,7 @@ const gallery = document.querySelector(".gallery");
 
 async function afficherWorks() {
   try {
-    /*Récupération des travaus sur l'API et conversion de la réponse en format JSON*/
+    /*Récupération de la galerie sur l'API et conversion de la réponse en format JSON*/
     const reponse = await fetch("http://localhost:5678/api/works");
     const works = await reponse.json();
     /*Suppression de galerie déjà existante en HTML*/
