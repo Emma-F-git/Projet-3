@@ -1,3 +1,5 @@
+import { API_URL } from "./constante.js";
+
 /*Intégration et gestion dynamique de la page de connexion pour le site*/
 
 const form = document.querySelector("form");
@@ -17,7 +19,7 @@ form.addEventListener("submit", async (event) => {
 
   try {
     /*Envoi d'une requête POST à l'API*/
-    const response = await fetch("http://localhost:5678/api/users/login", {
+    const response = await fetch(`${API_URL}users/login`, {
       method: "POST",
       headers: {
         accept: "application/json",

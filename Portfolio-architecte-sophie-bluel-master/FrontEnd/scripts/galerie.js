@@ -1,6 +1,8 @@
+import { API_URL } from "./constante.js";
+
 /*Création des boutons dynamiques de filtres pour la galerie*/
 
-const activeFilters = [];
+let activeFilters = [];
 
 /*Insertion des boutons de filtrage après le titre h2 portfolio*/
 const selectionElement = document.querySelector("#portfolio h2");
@@ -30,7 +32,7 @@ async function afficherCategories() {
   const filters = document.getElementById("filters");
   try {
     /*Récupération des données sur l'API et conversion de la réponse en format JSON*/
-    const reponse = await fetch("http://localhost:5678/api/categories");
+    const reponse = await fetch(`${API_URL}categories`);
     const categories = await reponse.json();
     console.log(categories);
     /*Création d'un bouton "tous" qui n'est pas dans l'API*/
@@ -49,7 +51,7 @@ const gallery = document.querySelector(".gallery");
 async function afficherWorks() {
   try {
     /*Récupération de la galerie sur l'API et conversion de la réponse en format JSON*/
-    const reponse = await fetch("http://localhost:5678/api/works");
+    const reponse = await fetch(`${API_URL}works`);
     const works = await reponse.json();
     /*Suppression de galerie déjà existante en HTML*/
     gallery.innerHTML = "";
