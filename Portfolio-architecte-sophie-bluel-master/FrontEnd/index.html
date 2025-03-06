@@ -21,6 +21,9 @@
   </head>
   <body>
     <header>
+      <class id="topBarEdit"
+        ><i class="fa-solid fa-pen-to-square"></i>Mode édition</class
+      >
       <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
       <nav>
         <ul>
@@ -67,17 +70,16 @@
               <i class="fa-solid fa-xmark"></i>
             </button>
             <p>
-              <label>
+              <h2>
                 Galerie photo
-                <select></select>
-              </label>
+                <div id="dialog-gallery" class="gallery"></div>
+              </h2>
             </p>
             <menu>
               <button value="addPicture">Ajouter une photo</button>
             </menu>
           </form>
         </dialog>
-        <output></output>
         <div class="gallery">
           <figure>
             <img src="assets/images/abajour-tahina.png" alt="Abajour Tahina" />

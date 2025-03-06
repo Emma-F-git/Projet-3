@@ -331,3 +331,9 @@ a {
   background: none;
   border: none;
 }
+
+#topBarEdit {
+  display: none;
+  background: black;
+  color: white;
+}
