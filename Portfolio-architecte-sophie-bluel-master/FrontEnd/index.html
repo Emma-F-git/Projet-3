@@ -11,6 +11,10 @@
       rel="stylesheet"
     />
     <meta name="description" content="" />
+    <script
+      src="https://kit.fontawesome.com/a15c888155.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="./assets/style.css" />
     <script type="module" src="scripts/galerie.js" defer></script>
     <script type="module" src="scripts/modale.js" defer></script>
@@ -22,7 +26,8 @@
         <ul>
           <li>projets</li>
           <li>contact</li>
-          <li id="loginButton"><a href="login.html">login</a></li>
+          <li id="login"><a href="login.html">login</a></li>
+          <li id="logout"><a href="logout.html">logout</a></li>
           <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
         </ul>
       </nav>
@@ -53,6 +58,23 @@
       </section>
       <section id="portfolio">
         <h2>Mes Projets</h2>
+        <button id="showDialog">
+          <i class="fa-solid fa-pen-to-square"></i>Modifier
+        </button>
+        <dialog id="favDialog">
+          <form method="dialog">
+            <p>
+              <label>
+                Galerie photo
+                <select></select>
+              </label>
+            </p>
+            <menu>
+              <button value="addPicture">Ajouter une photo</button>
+            </menu>
+          </form>
+        </dialog>
+        <output></output>
         <div class="gallery">
           <figure>
             <img src="assets/images/abajour-tahina.png" alt="Abajour Tahina" />

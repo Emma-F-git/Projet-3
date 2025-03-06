@@ -314,3 +314,14 @@ a {
   text-decoration: none;
   color: black;
 }
+
+#editButton {
+  align-items: center;
+  padding: 0 10px;
+  font-size: 1.2em;
+  text-decoration: none;
+}
+
+#logout {
+  display: none;
+}
