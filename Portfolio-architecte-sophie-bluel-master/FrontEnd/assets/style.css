@@ -325,3 +325,9 @@ a {
 #logout {
   display: none;
 }
+
+#showDialog {
+  font-size: 1.2em;
+  background: none;
+  border: none;
+}
