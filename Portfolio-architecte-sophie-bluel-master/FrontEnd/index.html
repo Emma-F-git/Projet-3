@@ -20,10 +20,10 @@
     <script type="module" src="scripts/modale.js" defer></script>
   </head>
   <body>
+    <class id="topBarEdit"
+      ><i class="fa-solid fa-pen-to-square"></i>Mode édition</class
+    >
     <header>
-      <class id="topBarEdit"
-        ><i class="fa-solid fa-pen-to-square"></i>Mode édition</class
-      >
       <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
       <nav>
         <ul>
@@ -62,21 +62,17 @@
       <section id="portfolio">
         <h2>Mes Projets</h2>
         <button id="showDialog">
-          <i class="fa-solid fa-pen-to-square"></i>Modifier
+          <i class="fa-solid fa-pen-to-square"></i>modifier
         </button>
         <dialog id="favDialog">
           <form method="dialog">
             <button id="closeDialog">
               <i class="fa-solid fa-xmark"></i>
             </button>
-            <p>
-              <h2>
-                Galerie photo
-                <div id="dialog-gallery" class="gallery"></div>
-              </h2>
-            </p>
+            <h3>Galerie photo</h3>
+            <div id="dialog-gallery" class="gallery"></div>
             <menu>
-              <button value="addPicture">Ajouter une photo</button>
+              <button id="addPicture">Ajouter une photo</button>
             </menu>
           </form>
         </dialog>

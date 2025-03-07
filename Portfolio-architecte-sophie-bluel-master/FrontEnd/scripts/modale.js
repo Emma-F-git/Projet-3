@@ -18,7 +18,10 @@ if (token) {
   login.style.display = "none"; /*bouton login non affiché*/
   logout.style.display = "block"; /*bouton logout affiché*/
   filters.style.display = "none"; /*Boutons filtres galerie non affichés*/
-  topBarEdit.style.display = "block";
+  topBarEdit.style.display =
+    "block"; /*Affichage de la barre en haut "Mode édition"*/
+  showDialog.style.display =
+    "block"; /*Affichage de la boite de dialog "Modifier"*/
 
   document.getElementById("logout").addEventListener("click", (event) => {
     event.preventDefault();
@@ -45,7 +48,6 @@ async function afficherWorksDialog() {
 
       image.setAttribute("src", work.imageUrl);
       image.setAttribute("alt", work.title);
-      figcaption.textContent = work.title;
 
       // Ajout des événements aux boutons
       deleteButton.addEventListener("click", () => supprimerImage(work.id));

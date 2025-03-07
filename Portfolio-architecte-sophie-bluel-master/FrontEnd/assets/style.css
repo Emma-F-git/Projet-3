@@ -262,7 +262,8 @@ li:hover {
   text-decoration: underline;
 }
 
-input[type="submit"] {
+input[type="submit"],
+#addPicture {
   font-family: "Syne";
   font-weight: 700;
   color: white;
@@ -326,8 +327,15 @@ a {
   display: none;
 }
 
+#portfolio {
+  position: relative;
+}
+
 #showDialog {
-  font-size: 1.2em;
+  position: absolute;
+  right: 33%;
+  top: 0.4%;
+  display: none;
   background: none;
   border: none;
 }
@@ -336,4 +344,20 @@ a {
   display: none;
   background: black;
   color: white;
+  text-align: center;
+  font-size: 16px;
+  padding: 1em;
+}
+
+h3 {
+  text-align: center;
+  font-size: 26px;
+}
+
+#closeDialog {
+  text-align: right;
+}
+
+dialog:modal {
+  width: 50%;
 }
