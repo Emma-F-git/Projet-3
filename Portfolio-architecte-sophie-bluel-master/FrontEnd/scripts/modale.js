@@ -9,9 +9,6 @@ let topBarEdit = document.getElementById("topBarEdit");
 
 const showButton = document.getElementById("showDialog");
 const favDialog = document.getElementById("favDialog");
-const outputBox = document.querySelector("output");
-const selectEl = favDialog.querySelector("select");
-const confirmBtn = favDialog.querySelector("#confirmBtn");
 const dialogGallery = document.getElementById("dialog-gallery");
 
 if (token) {
@@ -40,11 +37,14 @@ async function afficherWorksDialog() {
       const figure = document.createElement("figure");
       const image = document.createElement("img");
       const figcaption = document.createElement("figcaption");
-      const deleteButton = document.createElement("button");
       const editButton = document.createElement("button");
+      const deleteButton = document.createElement("button");
+      const deleteIcon = document.createElement("i");
 
       figure.classList.add("work");
-      deleteButton.classList.add("delete-btn");
+      deleteButton.classList.add("deleteBtn");
+      deleteIcon.classList.add("fa-regular");
+      deleteIcon.classList.add("fa-trash-can");
 
       image.setAttribute("src", work.imageUrl);
       image.setAttribute("alt", work.title);
@@ -53,6 +53,7 @@ async function afficherWorksDialog() {
       deleteButton.addEventListener("click", () => supprimerImage(work.id));
       editButton.addEventListener("click", () => modifierImage(work.id));
 
+      deleteButton.appendChild(deleteIcon);
       figure.appendChild(image);
       figure.appendChild(figcaption);
       figure.appendChild(deleteButton);
@@ -70,13 +71,12 @@ showButton.addEventListener("click", () => {
   afficherWorksDialog();
   favDialog.showModal();
 });
-// Le bouton "Fermer" ferme le dialogue
-closeDialog.addEventListener("click", () => {
-  dialog.close();
-});
 
-// Empêchez le bouton « Confirmer » de soumettre le formulaire par défaut et fermez la boîte de dialogue avec la méthode `close()`, qui déclenche l'événement "close".
-confirmBtn.addEventListener("click", (event) => {
-  event.preventDefault(); // Nous ne voulons pas soumettre ce faux formulaire
-  favDialog.close(selectEl.value); // Il faut envoyer la valeur du sélecteur ici.
+document.getElementById("closeDialog").addEventListener("click", () => {
+  favDialog.close();
+});
+favDialog.addEventListener("click", (event) => {
+  if (event.target === favDialog) {
+    favDialog.close();
+  }
 });
