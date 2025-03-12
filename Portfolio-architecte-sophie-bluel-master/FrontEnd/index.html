@@ -65,16 +65,45 @@
           <i class="fa-solid fa-pen-to-square"></i>modifier
         </button>
         <dialog id="favDialog">
-          <form method="dialog">
-            <button id="closeDialog">
-              <i class="fa-solid fa-xmark"></i>
+          <button id="closeDialog">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+          <h3>Galerie photo</h3>
+          <div id="dialog-gallery" class="gallery"></div>
+          <button type="button" id="addPicture">Ajouter une photo</button>
+          <div id="addPictureFormContainer" class="form-container">
+            <button type="button" id="backToGallery">
+              <i class="fa-solid fa-arrow-left"></i>
             </button>
-            <h3>Galerie photo</h3>
-            <div id="dialog-gallery" class="gallery"></div>
-            <button id="addPicture">Ajouter une photo</button>
-          </form>
+            <h3>Ajout photo</h3>
+            <div class="addPictureInside">
+              <i class="fa-solid fa-image"></i>
+
+              <button type="button" id="addPicture" class="add-button">
+                + Ajouter photo
+              </button>
+              <p class="file-info">jpg, png | Taille max : 4 Mo</p>
+            </div>
+            <input
+              type="file"
+              id="hidenFileInput"
+              name="image"
+              accept="image/*"
+              style="display: none"
+              required
+            />
+            <form id="addProjectForm">
+              <label for="title">Titre</label>
+              <input type="text" id="title" name="title" required />
+
+              <label for="category">Catégorie</label>
+              <select id="category" name="category" required></select>
+
+              <button type="submit" id="validatePicture">Valider</button>
+            </form>
+          </div>
         </dialog>
-        <div class="gallery">
+        <div class="gallery" id="gallery">
           <figure>
             <img src="assets/images/abajour-tahina.png" alt="Abajour Tahina" />
             <figcaption>Abajour Tahina</figcaption>

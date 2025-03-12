@@ -46,7 +46,7 @@ async function afficherCategories() {
   }
 }
 
-const gallery = document.querySelector(".gallery");
+const gallery = document.getElementById("gallery");
 
 async function afficherWorks() {
   try {
@@ -72,15 +72,18 @@ async function afficherWorks() {
       figure.appendChild(figcaption);
       gallery.appendChild(figure);
     });
+
+    filterGallery();
   } catch (error) {
     console.log("Erreur affichage galerie: " + error.message);
   }
 }
 
-function filterGallery(categoryId) {
+function filterGallery() {
   const allWorks = document.querySelectorAll(".work");
 
   allWorks.forEach((work) => {
+    console.log(work.dataset.categoryId);
     const workCategory = Number(work.dataset.categoryId);
     if (activeFilters.length === 0 || activeFilters.includes(workCategory)) {
       work.style.display =
@@ -94,6 +97,7 @@ function filterGallery(categoryId) {
 /*Affichage lors du clic du filtre*/
 function toggleFilter(button, categoryId) {
   const allButtons = document.querySelectorAll("#filters button");
+  console.log(activeFilters);
 
   if (categoryId === 0) {
     /* Si le bouton "Tous" est cliqué, désactive tous les autres filtres*/
@@ -111,18 +115,21 @@ function toggleFilter(button, categoryId) {
     const allButton = document.querySelector('button[data-category-id="0"]');
     allButton.classList.remove("active");
 
-    const index = activeFilters.indexOf(categoryId);
+    const index = activeFilters.indexOf(Number(categoryId));
     if (index !== -1) {
       /* Désactive le filtre s'il est déjà actif */
       activeFilters.splice(index, 1);
       button.classList.remove("active");
     } else {
       /* Active le filtre si non actif */
-      activeFilters.push(categoryId);
+      activeFilters.push(Number(categoryId));
       button.classList.add("active");
     }
   }
 }
 
-afficherCategories();
-afficherWorks();
+afficherCategories().then(() => {
+  afficherWorks().then(() => {
+    filterGallery();
+  });
+});

@@ -263,7 +263,8 @@ li:hover {
 }
 
 input[type="submit"],
-#addPicture {
+#addPicture,
+#validatePicture {
   font-family: "Syne";
   font-weight: 700;
   color: white;
@@ -331,6 +332,18 @@ a {
   position: relative;
 }
 
+/*Affichage d'une barre Mode édition en haut de l'écran lorsque l'utilisateur est connecté*/
+#topBarEdit {
+  display: none;
+  background: black;
+  color: white;
+  text-align: center;
+  font-size: 16px;
+  padding: 1em;
+}
+
+/*Affichage de la modale*/
+
 #showDialog {
   position: absolute;
   right: 33%;
@@ -345,28 +358,19 @@ a {
   margin-right: 6px;
 }
 
-#topBarEdit {
-  display: none;
-  background: black;
-  color: white;
-  text-align: center;
-  font-size: 16px;
-  padding: 1em;
-}
-
 h3 {
   text-align: center;
   font-size: 26px;
-  padding: 1em;
+  padding: 2em;
 }
 
 #closeDialog {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 50px;
+  right: 20px;
   background: none;
   border: none;
-  width: 12px;
+  font-size: 21px;
 }
 
 dialog:modal {
@@ -380,7 +384,124 @@ dialog:modal img {
   width: 50%;
 }
 
+#dialog-gallery {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  padding: 2em;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+figure.work img {
+  width: 100%;
+  height: auto;
+}
+
+.form-container form {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container label {
+  margin: 2em 0 1em 0;
+  font-weight: bold;
+}
+
+.form-container input,
+.form-container select {
+  height: 50px;
+  font-size: 1.2em;
+  border: none;
+  padding: 10px;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+/*Affichage du bouton retour à la galerie dans la modale*/
+#backToGallery {
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 21px;
+}
+
+/*Affichage du bouton ajouter photos*/
+#addPicture:hover,
+#validatePicture:hover {
+  background-color: #144a3d;
+}
+
+#addPicture,
+#validatePicture {
+  display: block;
+  padding: 15px;
+  border: none;
+}
+
+#validatePicture:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Centrer la modale */
+dialog#favDialog {
+  width: 50%;
+  max-width: 600px;
+  padding: 20px;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.2);
+}
+
+dialog#favDialog::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/* Cacher le formulaire d'ajout par défaut */
+#addPictureFormContainer {
+  display: none;
+  padding: 2rem;
+}
+
+.dialog-header {
+  width: 80%;
+  height: 4px;
+  background-color: #1d6154;
+  margin: 0 auto 20px auto;
+  border-radius: 2px;
+}
+
+/*Affichage du bouton pour supprimer les images dans la modale*/
+figure.work {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+}
+
 button.deleteBtn {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  cursor: pointer;
   background-color: black;
+  border: black;
   color: white;
+  border-radius: 2px;
+}
+
+button.deleteBtn i {
+  font-size: 11px;
+}
+
+.addPictureInside {
+  background-color: #e8f1f6;
+  text-align: center;
+  padding: 2rem;
+}
+
+.addPictureInside .fa-image {
+  font-size: 5rem; /*taille de l'affichage de l'icone image dans la modale*/
+  color: #b9c5cc;
 }
