@@ -264,7 +264,8 @@ li:hover {
 
 input[type="submit"],
 #addPicture,
-#validatePicture {
+#validatePicture,
+#addPictureBtn {
   font-family: "Syne";
   font-weight: 700;
   color: white;
@@ -427,7 +428,8 @@ figure.work img {
 
 /*Affichage du bouton ajouter photos*/
 #addPicture:hover,
-#validatePicture:hover {
+#validatePicture:hover,
+#addPictureBtn:hover {
   background-color: #144a3d;
 }
 
@@ -498,10 +500,13 @@ button.deleteBtn i {
   background-color: #e8f1f6;
   text-align: center;
   padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .addPictureInside .fa-image {
-  font-size: 5rem; /*taille de l'affichage de l'icone image dans la modale*/
+  font-size: 5rem;
   color: #b9c5cc;
 }
 

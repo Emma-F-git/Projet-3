@@ -16,13 +16,13 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="./assets/style.css" />
-    <script type="module" src="scripts/galerie.js" defer></script>
-    <script type="module" src="scripts/modale.js" defer></script>
+    <script type="module" src="scripts/galerie.js"></script>
+    <script type="module" src="scripts/modale.js"></script>
   </head>
   <body>
-    <class id="topBarEdit"
-      ><i class="fa-solid fa-pen-to-square"></i>Mode édition</class
-    >
+    <div id="topBarEdit">
+      <i class="fa-solid fa-pen-to-square"></i>Mode édition
+    </div>
     <header>
       <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
       <nav>
@@ -79,7 +79,7 @@
             <div class="addPictureInside">
               <i class="fa-solid fa-image"></i>
 
-              <button type="button" id="addPicture" class="add-button">
+              <button type="button" id="addPictureBtn" class="add-button">
                 + Ajouter photo
               </button>
               <p class="file-info">jpg, png | Taille max : 4 Mo</p>
@@ -97,7 +97,9 @@
               <input type="text" id="title" name="title" required />
 
               <label for="category">Catégorie</label>
-              <select id="category" name="category" required></select>
+              <select id="category" name="category" required>
+                <option value="" disabled selected>" "</option>
+              </select>
 
               <button type="submit" id="validatePicture">Valider</button>
             </form>
