@@ -11,15 +11,17 @@ const showButton = document.getElementById("showDialog");
 const favDialog = document.getElementById("favDialog");
 const dialogGallery = document.getElementById("dialog-gallery");
 
+/*Affichage une fois l'utilisateur connecté de l'interface en mode édition*/
 if (token) {
   login.style.display = "none"; /*bouton login non affiché*/
   logout.style.display = "block"; /*bouton logout affiché*/
-  filters.style.display = "none"; /*Boutons filtres galerie non affichés*/
+  filters.style.display = "none"; /*boutons filtres galerie non affichés*/
   topBarEdit.style.display =
     "block"; /*Affichage de la barre en haut "Mode édition"*/
   showButton.style.display =
     "block"; /*Affichage de la boite de dialog "Modifier"*/
 
+  /*Lors de la déconnexion, suppression du token, rechargement de la page*/
   document.getElementById("logout").addEventListener("click", (event) => {
     event.preventDefault();
     sessionStorage.removeItem("token");
@@ -27,11 +29,12 @@ if (token) {
   });
 }
 
+/*Récupération des images de la galerie pour la modale dialog*/
 async function afficherWorksDialog() {
   try {
     const reponse = await fetch(`${API_URL}works`);
     const works = await reponse.json();
-    dialogGallery.innerHTML = ""; /*galerie vide avant de la remplir*/
+    dialogGallery.innerHTML = "";
 
     works.forEach((work) => {
       const figure = document.createElement("figure");
@@ -49,7 +52,7 @@ async function afficherWorksDialog() {
       image.setAttribute("src", work.imageUrl);
       image.setAttribute("alt", work.title);
 
-      /*Ajout des événements aux boutons*/
+      /*Ajout des événements aux boutons supprimer, éditer l'image*/
       deleteButton.addEventListener("click", () => deletePicture(work.id));
       editButton.addEventListener("click", () => editPicture(work.id));
 
@@ -66,12 +69,13 @@ async function afficherWorksDialog() {
   }
 }
 
-/*Le bouton « Modifier » ouvre la modale <dialog>*/
+/*Le bouton « Modifier » ouvre la modale dialog*/
 showButton.addEventListener("click", () => {
   afficherWorksDialog();
   favDialog.showModal();
 });
 
+/*Fermeture de la modale par le clic sur la croix ou en dehors de la modale*/
 document.getElementById("closeDialog").addEventListener("click", () => {
   favDialog.close();
 });
@@ -81,7 +85,7 @@ favDialog.addEventListener("click", (event) => {
   }
 });
 
-/*Suppression des travaux avec le clic sur l'icone poubelle*/
+/*Suppression des travaux au clic de l'icone suppression/poubelle*/
 async function deletePicture(workId) {
   try {
     const response = await fetch(`${API_URL}works/${workId}`, {
@@ -151,6 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  /*Charge les catégorie dans la modale, menu, ajouter photo, catégories*/
   async function chargerCategories() {
     try {
       const response = await fetch(`${API_URL}categories`);
@@ -167,24 +172,51 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /*Ajout d'une condition d'activation pour le bouton valider*/
-document.addEventListener("DOMContentLoaded", () => {
-  const imageInput = document.getElementById("image");
-  const titleInput = document.getElementById("title");
-  const categorySelect = document.getElementById("category");
-  const validateButton = document.getElementById("validatePicture");
+const imageInput = document.getElementById("hidenFileInput");
+const titleInput = document.getElementById("title");
+const categorySelect = document.getElementById("category");
+const validateButton = document.getElementById("validatePicture");
+document
+  .getElementById("addProjectForm")
+  .addEventListener("submit", async (event) => {
+    event.preventDefault();
 
-  function checkFormCompletion() {
-    if (
-      imageInput.files.length > 0 &&
-      titleInput.value.trim() !== "" &&
-      categorySelect.value
-    ) {
-      validateButton.removeAttribute("disabled");
-    } else {
-      validateButton.setAttribute("disabled", "true");
+    const imageFile = imageInput.files[0];
+    const title = titleInput.value.trim();
+    const categoryId = categorySelect.value;
+
+    /*Envoi de la requête à l'API pour ajouter des images*/
+    const formData = new FormData();
+    formData.append("image", imageFile);
+    formData.append("title", title);
+    formData.append("categoryId", categoryId);
+    formData.append("userId", 0);
+
+    try {
+      const response = await fetch(`${API_URL}works`, {
+        method: "POST",
+        body: formData,
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: "application/json",
+        },
+      });
+
+      if (response.ok) {
+        alert("Photo ajoutée !");
+        const newWork = await response.json();
+        afficherNouvelleImage(newWork);
+
+        imageInput.value = "";
+        titleInput.value = "";
+        categorySelect.selectedIndex = 0;
+        validateButton.setAttribute("disabled", "true");
+        toggleForm(false);
+      } else {
+        alert("Erreur lors de l'ajout de la photo.");
+      }
+    } catch (error) {
+      console.error("Erreur d'envoi à l'API:", error);
+      alert("Une erreur est survenue.");
     }
-  }
-  imageInput.addEventListener("change", checkFormCompletion);
-  titleInput.addEventListener("input", checkFormCompletion);
-  categorySelect.addEventListener("change", checkFormCompletion);
-});
+  });
