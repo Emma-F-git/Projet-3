@@ -185,11 +185,16 @@ document
     const title = titleInput.value.trim();
     const categoryId = categorySelect.value;
 
+    if (!imageFile) {
+      alert("Veuillez sélectionner une image.");
+      return;
+    }
+
     /*Envoi de la requête à l'API pour ajouter des images*/
     const formData = new FormData();
     formData.append("image", imageFile);
     formData.append("title", title);
-    formData.append("categoryId", categoryId);
+    formData.append("category", categoryId);
     formData.append("userId", 0);
 
     try {
