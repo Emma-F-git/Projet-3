@@ -550,10 +550,17 @@ button.deleteBtn i {
   display: none;
 }
 
-.hidden {
-  display: none !important;
+.message-box {
+  background-color: #4caf50; /* Vert */
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 10px;
+  display: none; /* Caché par défaut */
 }
 
-.visible {
-  display: grid; /* ou flex selon ton layout */
+.hidden {
+  display: none;
 }

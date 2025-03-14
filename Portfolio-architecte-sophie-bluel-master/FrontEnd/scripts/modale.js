@@ -105,7 +105,7 @@ function toggleForm(showForm) {
     chargerCategories();
   } else {
     formContainer.style.display = "none";
-    galleryContainer.style.display = "block";
+    galleryContainer.style.display = "grid";
     if (titleGallery) titleGallery.style.display = "block";
     if (addPictureButton) addPictureButton.style.display = "block";
 
