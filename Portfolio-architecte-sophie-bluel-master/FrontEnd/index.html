@@ -76,13 +76,15 @@
               <i class="fa-solid fa-arrow-left"></i>
             </button>
             <h3>Ajout photo</h3>
-            <div class="addPictureInside">
+            <div id="imagePreviewContainer">
               <i class="fa-solid fa-image"></i>
-
               <button type="button" id="addPictureBtn" class="add-button">
                 + Ajouter photo
               </button>
               <p class="file-info">jpg, png | Taille max : 4 Mo</p>
+            </div>
+            <div id="imagePreview" style="display: none">
+              <img id="previewImage" src="" alt="Aperçu" />
             </div>
             <input
               type="file"

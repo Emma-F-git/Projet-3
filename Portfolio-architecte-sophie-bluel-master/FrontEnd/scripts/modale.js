@@ -114,6 +114,34 @@ document.addEventListener("DOMContentLoaded", () => {
   const galleryContainer = document.getElementById("dialog-gallery");
   const formContainer = document.getElementById("addPictureFormContainer");
   const fileInput = document.getElementById("hidenFileInput");
+  const imagePreviewContainer = document.getElementById(
+    "imagePreviewContainer"
+  );
+  const imagePreview = document.getElementById("imagePreview");
+  const previewImage = document.getElementById("previewImage");
+  const validateButton = document.getElementById("validatePicture");
+
+  /*Sélection d'une image à ajouter*/
+  fileInput.addEventListener("change", (event) => {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+
+      /*Prévisualiser l'image*/
+      reader.onload = function (e) {
+        previewImage.src = e.target.result;
+
+        /*Afficher la prévisualisation de l'image et cacher l'icône + texte*/
+        imagePreviewContainer.style.display = "none";
+        imagePreview.style.display = "block";
+
+        /*Activer le bouton Valider après la sélection de l'image*/
+        validateButton.removeAttribute("disabled");
+      };
+
+      reader.readAsDataURL(file);
+    }
+  });
 
   function toggleForm(showForm) {
     if (!galleryContainer || !formContainer) {
@@ -225,3 +253,18 @@ document
       alert("Une erreur est survenue.");
     }
   });
+
+function afficherNouvelleImage(work) {
+  const gallery = document.getElementById("gallery");
+  const figure = document.createElement("figure");
+  const image = document.createElement("img");
+  const figcaption = document.createElement("figcaption");
+
+  image.setAttribute("src", work.imageUrl);
+  image.setAttribute("alt", work.title);
+  figcaption.textContent = work.title;
+
+  figure.appendChild(image);
+  figure.appendChild(figcaption);
+  gallery.appendChild(figure);
+}

@@ -383,6 +383,7 @@ dialog:modal {
 
 dialog:modal img {
   width: 50%;
+  text-align: center;
 }
 
 #dialog-gallery {
@@ -512,4 +513,36 @@ button.deleteBtn i {
 
 .file-info {
   font-size: 10px;
+}
+
+#imagePreviewContainer,
+#imagePreview {
+  text-align: center;
+  background-color: #e8f1f6;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#imagePreviewContainer i {
+  font-size: 5rem;
+  color: #b9c5cc;
+}
+
+/* Bouton pour ajouter une photo +Ajouter photo */
+#imagePreviewContainer button {
+  margin-top: 10px;
+  padding: 12px 24px;
+  background-color: #b9c5cc;
+  color: white;
+  font-weight: 700;
+  border-radius: 60px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Masquer l'icône, le bouton et le texte d'infos lorsqu'une image est choisie */
+#imagePreview {
+  display: none;
 }

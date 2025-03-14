@@ -83,7 +83,6 @@ function filterGallery() {
   const allWorks = document.querySelectorAll(".work");
 
   allWorks.forEach((work) => {
-    console.log(work.dataset.categoryId);
     const workCategory = Number(work.dataset.categoryId);
     if (activeFilters.length === 0 || activeFilters.includes(workCategory)) {
       work.style.display =
