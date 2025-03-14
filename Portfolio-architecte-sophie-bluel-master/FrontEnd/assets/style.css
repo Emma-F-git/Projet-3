@@ -282,6 +282,10 @@ footer nav ul {
   margin: 2em;
 }
 
+button {
+  cursor: pointer;
+}
+
 /*Filtres galerie*/
 #filters {
   display: flex;
@@ -486,7 +490,6 @@ button.deleteBtn {
   position: absolute;
   top: 2px;
   right: 2px;
-  cursor: pointer;
   background-color: black;
   border: black;
   color: white;
@@ -545,4 +548,12 @@ button.deleteBtn i {
 /* Masquer l'icône, le bouton et le texte d'infos lorsqu'une image est choisie */
 #imagePreview {
   display: none;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.visible {
+  display: grid; /* ou flex selon ton layout */
 }

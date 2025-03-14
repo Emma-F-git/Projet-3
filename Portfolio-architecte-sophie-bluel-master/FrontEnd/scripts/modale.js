@@ -69,6 +69,51 @@ async function afficherWorksDialog() {
   }
 }
 
+/*Charge les catégorie dans la modale, menu, ajouter photo, catégories*/
+async function chargerCategories() {
+  try {
+    const response = await fetch(`${API_URL}categories`);
+    const categories = await response.json();
+    const selectCategory = document.getElementById("category");
+
+    selectCategory.innerHTML = categories
+      .map(({ id, name }) => `<option value="${id}">${name}</option>`)
+      .join("");
+  } catch (error) {
+    console.error("Erreur lors du chargement des catégories :", error);
+  }
+}
+
+function toggleForm(showForm) {
+  const galleryContainer = document.getElementById("dialog-gallery");
+  const formContainer = document.getElementById("addPictureFormContainer");
+  const addPictureButton = document.getElementById("addPicture");
+
+  if (!galleryContainer || !formContainer) {
+    console.error("Erreur : les éléments n'ont pas été trouvés !");
+    return;
+  }
+
+  const titleGallery = document.querySelector("dialog h3");
+
+  if (showForm) {
+    galleryContainer.style.display = "none";
+    formContainer.style.display = "block";
+    if (titleGallery) titleGallery.style.display = "none";
+    if (addPictureButton) addPictureButton.style.display = "none";
+
+    chargerCategories();
+  } else {
+    formContainer.style.display = "none";
+    galleryContainer.style.display = "block";
+    if (titleGallery) titleGallery.style.display = "block";
+    if (addPictureButton) addPictureButton.style.display = "block";
+
+    dialogGallery.innerHTML = "";
+    afficherWorksDialog();
+  }
+}
+
 /*Le bouton « Modifier » ouvre la modale dialog*/
 showButton.addEventListener("click", () => {
   afficherWorksDialog();
@@ -111,8 +156,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const addPictureButton = document.getElementById("addPicture");
   const backToGalleryButton = document.getElementById("backToGallery");
 
-  const galleryContainer = document.getElementById("dialog-gallery");
-  const formContainer = document.getElementById("addPictureFormContainer");
   const fileInput = document.getElementById("hidenFileInput");
   const imagePreviewContainer = document.getElementById(
     "imagePreviewContainer"
@@ -143,32 +186,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  function toggleForm(showForm) {
-    if (!galleryContainer || !formContainer) {
-      console.error("Erreur : les éléments n'ont pas été trouvés !");
-      return;
-    }
-
-    const titleGallery = document.querySelector("dialog h3");
-
-    if (showForm) {
-      galleryContainer.style.display = "none";
-      formContainer.style.display = "block";
-      if (titleGallery) titleGallery.style.display = "none";
-      if (addPictureButton) addPictureButton.style.display = "none";
-
-      chargerCategories();
-    } else {
-      formContainer.style.display = "none";
-      galleryContainer.style.display = "block";
-      if (titleGallery) titleGallery.style.display = "block";
-      if (addPictureButton) addPictureButton.style.display = "block";
-
-      dialogGallery.innerHTML = "";
-      afficherWorksDialog();
-    }
-  }
-
   addPictureButton?.addEventListener("click", () => toggleForm(true));
   backToGalleryButton?.addEventListener("click", () => toggleForm(false));
 
@@ -182,21 +199,6 @@ document.addEventListener("DOMContentLoaded", () => {
         event.target.files[0].name;
     }
   });
-
-  /*Charge les catégorie dans la modale, menu, ajouter photo, catégories*/
-  async function chargerCategories() {
-    try {
-      const response = await fetch(`${API_URL}categories`);
-      const categories = await response.json();
-      const selectCategory = document.getElementById("category");
-
-      selectCategory.innerHTML = categories
-        .map(({ id, name }) => `<option value="${id}">${name}</option>`)
-        .join("");
-    } catch (error) {
-      console.error("Erreur lors du chargement des catégories :", error);
-    }
-  }
 });
 
 /*Ajout d'une condition d'activation pour le bouton valider*/
