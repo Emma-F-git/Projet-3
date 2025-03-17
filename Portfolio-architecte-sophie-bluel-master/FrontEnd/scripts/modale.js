@@ -140,12 +140,18 @@ async function deletePicture(workId) {
         "Content-Type": "application/json",
       },
     });
+    const successDeletePicture = document.getElementById(
+      "successDeletePicture"
+    );
+    successDeletePicture.style.display = "block";
+    setTimeout(() => {
+      successDeletePicture.style.display = "none";
+    }, 8000);
+    afficherWorksDialog();
 
     if (!response.ok) {
       throw new Error("Échec de la suppression de l'image");
     }
-
-    afficherWorksDialog();
   } catch (error) {
     console.error("Erreur lors de la suppression :", error);
   }
@@ -255,7 +261,6 @@ document
       });
 
       if (response.ok) {
-        alert("Photo ajoutée !");
         const newWork = await response.json();
         afficherNouvelleImage(newWork);
 
@@ -264,6 +269,12 @@ document
         categorySelect.selectedIndex = 0;
         validateButton.setAttribute("disabled", "true");
         toggleForm(false);
+
+        const successMessage = document.getElementById("successAddPicture");
+        successMessage.style.display = "block";
+        setTimeout(() => {
+          successMessage.style.display = "none";
+        }, 8000);
       } else {
         alert("Erreur lors de l'ajout de la photo.");
       }

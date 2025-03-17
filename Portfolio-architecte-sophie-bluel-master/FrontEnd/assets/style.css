@@ -574,3 +574,30 @@ button.deleteBtn i {
 .hidden {
   display: none;
 }
+
+#successAddPicture {
+  position: fixed;
+  top: 5em;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #3ac55a;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 24px;
+  display: none;
+  z-index: 1000;
+}
+
+#successDeletePicture {
+  position: fixed;
+  top: 5em;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #000000;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 24px;
+  display: none;
+  z-index: 1000;
+}
