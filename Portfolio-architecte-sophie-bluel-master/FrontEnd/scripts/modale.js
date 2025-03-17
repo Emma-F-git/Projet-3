@@ -163,6 +163,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const imagePreview = document.getElementById("imagePreview");
   const previewImage = document.getElementById("previewImage");
   const validateButton = document.getElementById("validatePicture");
+  const title = document.getElementById("title");
+  const category = document.getElementById("category");
+
+  function checkFormValidity() {
+    const imageFile = fileInput.files[0];
+    const titleValue = title.value.trim();
+    const categoryValue = category.value;
+
+    /*Activer le bouton Valider après la sélection de l'image*/
+    if (imageFile && titleValue && categoryValue) {
+      validateButton.removeAttribute("disabled");
+    } else {
+      validateButton.setAttribute("disabled", "true");
+    }
+  }
 
   /*Sélection d'une image à ajouter*/
   fileInput.addEventListener("change", (event) => {
@@ -178,13 +193,14 @@ document.addEventListener("DOMContentLoaded", () => {
         imagePreviewContainer.style.display = "none";
         imagePreview.style.display = "block";
 
-        /*Activer le bouton Valider après la sélection de l'image*/
-        validateButton.removeAttribute("disabled");
+        checkFormValidity();
       };
-
       reader.readAsDataURL(file);
     }
   });
+
+  title.addEventListener("input", checkFormValidity);
+  category.addEventListener("change", checkFormValidity);
 
   addPictureButton?.addEventListener("click", () => toggleForm(true));
   backToGalleryButton?.addEventListener("click", () => toggleForm(false));
@@ -206,8 +222,6 @@ const imageInput = document.getElementById("hidenFileInput");
 const titleInput = document.getElementById("title");
 const categorySelect = document.getElementById("category");
 const validateButton = document.getElementById("validatePicture");
-const titleInput = document.getElementById("title");
-const categorySelect = document.getElementById("category");
 
 document
   .getElementById("addProjectForm")
