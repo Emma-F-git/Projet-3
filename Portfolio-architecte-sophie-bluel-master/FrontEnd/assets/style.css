@@ -245,6 +245,7 @@ li:hover {
   border: none;
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
+
 #contact label,
 #logIn label {
   margin: 2em 0 1em 0;
@@ -273,6 +274,8 @@ input[type="submit"],
   width: 180px;
   text-align: center;
   border-radius: 60px;
+  font-size: 14px;
+  cursor: pointer;
 }
 
 footer nav ul {
@@ -445,7 +448,6 @@ figure.work img {
 #validatePicture:disabled {
   background-color: #a7a7a7;
   cursor: not-allowed;
-  opacity: 0.6;
 }
 
 #validatePicture {
@@ -458,7 +460,10 @@ figure.work img {
   border-radius: 60px;
   border: 1px solid;
   font-size: 16px;
-  height: 37px;
+  padding: 15px;
+  width: 180px;
+  margin: 2em auto;
+  font-size: 14px;
 }
 
 /* Centrer la modale */
@@ -585,7 +590,6 @@ button.deleteBtn i {
   border-radius: 5px;
   font-size: 24px;
   display: none;
-  z-index: 1000;
 }
 
 #successDeletePicture {
@@ -599,5 +603,13 @@ button.deleteBtn i {
   border-radius: 5px;
   font-size: 24px;
   display: none;
-  z-index: 1000;
+}
+
+#greyBar {
+  height: 1px;
+  background-color: #b3b3b3;
+  width: 28%;
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

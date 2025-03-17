@@ -88,6 +88,7 @@ function toggleForm(showForm) {
   const galleryContainer = document.getElementById("dialog-gallery");
   const formContainer = document.getElementById("addPictureFormContainer");
   const addPictureButton = document.getElementById("addPicture");
+  const greyBar = document.getElementById("greyBar");
 
   if (!galleryContainer || !formContainer) {
     console.error("Erreur : les éléments n'ont pas été trouvés !");
@@ -101,6 +102,7 @@ function toggleForm(showForm) {
     formContainer.style.display = "block";
     if (titleGallery) titleGallery.style.display = "none";
     if (addPictureButton) addPictureButton.style.display = "none";
+    if (greyBar) greyBar.style.display = "none";
 
     chargerCategories();
   } else {
@@ -108,6 +110,7 @@ function toggleForm(showForm) {
     galleryContainer.style.display = "grid";
     if (titleGallery) titleGallery.style.display = "block";
     if (addPictureButton) addPictureButton.style.display = "block";
+    if (greyBar) greyBar.style.display = "block";
 
     dialogGallery.innerHTML = "";
     afficherWorksDialog();
@@ -293,6 +296,8 @@ function afficherNouvelleImage(work) {
   image.setAttribute("src", work.imageUrl);
   image.setAttribute("alt", work.title);
   figcaption.textContent = work.title;
+
+  figure.classList.add("work");
 
   figure.appendChild(image);
   figure.appendChild(figcaption);
