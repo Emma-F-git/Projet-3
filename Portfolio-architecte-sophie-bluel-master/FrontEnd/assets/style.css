@@ -383,17 +383,18 @@ h3 {
   font-size: 21px;
 }
 
-dialog:modal {
+dialog {
   width: 630px;
   height: 688px;
   border-radius: 10px;
   border: 2px solid white;
 }
 
-dialog:modal img {
+dialog img {
   width: 129px;
   text-align: center;
-  max-height: 193px;
+  height: 193px;
+  object-fit: cover;
 }
 
 #dialog-gallery {
@@ -417,7 +418,6 @@ figure.work img {
 
 .form-container label {
   margin: 2em 0 1em 0;
-  font-weight: bold;
 }
 
 .form-container input,
@@ -442,6 +442,7 @@ figure.work img {
 #addPicture:hover,
 #addPictureBtn:hover {
   background-color: #144a3d;
+  color: white;
 }
 
 #addPicture {
@@ -467,8 +468,12 @@ figure.work img {
   font-size: 16px;
   padding: 15px;
   width: 237px;
-  margin: 4em auto;
+  margin: 5em auto;
   font-size: 14px;
+  bottom: 10px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 /* Centrer la modale */
@@ -523,23 +528,16 @@ button.deleteBtn i {
 .addPictureInside {
   background-color: #e8f1f6;
   text-align: center;
-  padding: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.addPictureInside .fa-image {
-  font-size: 5rem;
-  color: #b9c5cc;
 }
 
 .file-info {
   font-size: 10px;
 }
 
-#imagePreviewContainer,
-#imagePreview {
+#imagePreviewContainer {
   text-align: center;
   background-color: #e8f1f6;
   padding: 1rem;
@@ -547,6 +545,15 @@ button.deleteBtn i {
   flex-direction: column;
   align-items: center;
   max-height: 169px;
+  overflow: hidden;
+  justify-content: center;
+}
+
+#imagePreview {
+  text-align: center;
+  background-color: #e8f1f6;
+  max-height: 169px;
+  overflow: hidden;
 }
 
 #imagePreviewContainer i {
@@ -556,10 +563,10 @@ button.deleteBtn i {
 
 /* Bouton pour ajouter une photo +Ajouter photo */
 #imagePreviewContainer button {
-  margin-top: 10px;
+  margin: 8px;
   padding: 12px 24px;
   background-color: #b9c5cc;
-  color: white;
+  color: #306685;
   font-weight: 700;
   border-radius: 60px;
   border: none;

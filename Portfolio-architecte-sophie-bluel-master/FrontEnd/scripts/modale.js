@@ -151,7 +151,7 @@ async function deletePicture(workId) {
     successDeletePicture.style.display = "block";
     setTimeout(() => {
       successDeletePicture.style.display = "none";
-    }, 8000);
+    }, 6000);
     afficherWorksDialog();
 
     if (!response.ok) {
@@ -279,7 +279,7 @@ document
         successMessage.style.display = "block";
         setTimeout(() => {
           successMessage.style.display = "none";
-        }, 8000);
+        }, 6000);
       } else {
         alert("Erreur lors de l'ajout de la photo.");
       }
