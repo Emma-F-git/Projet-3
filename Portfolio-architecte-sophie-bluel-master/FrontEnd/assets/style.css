@@ -215,6 +215,10 @@ li:hover {
 .gallery img {
   width: 100%;
 }
+#gallery img {
+  min-height: 488px;
+  object-fit: cover;
+}
 #contact,
 #logIn {
   width: 50%;
@@ -271,7 +275,7 @@ input[type="submit"],
   color: white;
   background-color: #1d6154;
   margin: 2em auto;
-  width: 180px;
+  width: 237px;
   text-align: center;
   border-radius: 60px;
   font-size: 14px;
@@ -368,13 +372,12 @@ a {
 h3 {
   text-align: center;
   font-size: 26px;
-  padding: 0em 0em 1em;
+  padding: 2em 0em 1em;
 }
 
 #closeDialog {
   position: absolute;
-  top: 50px;
-  right: 20px;
+  right: 32px;
   background: none;
   border: none;
   font-size: 21px;
@@ -388,14 +391,14 @@ dialog:modal {
 }
 
 dialog:modal img {
-  width: 50%;
+  width: 129px;
   text-align: center;
+  max-height: 193px;
 }
 
 #dialog-gallery {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
   padding: 2em;
   width: 100%;
   box-sizing: border-box;
@@ -431,6 +434,8 @@ figure.work img {
   background: none;
   border: none;
   font-size: 21px;
+  position: absolute;
+  left: 32px;
 }
 
 /*Affichage du bouton ajouter photos*/
@@ -461,8 +466,8 @@ figure.work img {
   border: 1px solid;
   font-size: 16px;
   padding: 15px;
-  width: 180px;
-  margin: 2em auto;
+  width: 237px;
+  margin: 4em auto;
   font-size: 14px;
 }
 
@@ -483,7 +488,7 @@ dialog#favDialog::backdrop {
 /* Cacher le formulaire d'ajout par défaut */
 #addPictureFormContainer {
   display: none;
-  padding: 2rem;
+  padding: 0rem 4rem;
 }
 
 .dialog-header {
@@ -541,6 +546,7 @@ button.deleteBtn i {
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-height: 169px;
 }
 
 #imagePreviewContainer i {
@@ -612,4 +618,14 @@ button.deleteBtn i {
   position: fixed;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+#greyBarValidate {
+  height: 1px;
+  background-color: #b3b3b3;
+  width: 28%;
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  bottom: 32%;
 }

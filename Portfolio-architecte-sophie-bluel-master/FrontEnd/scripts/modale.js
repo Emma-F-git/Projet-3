@@ -89,6 +89,7 @@ function toggleForm(showForm) {
   const formContainer = document.getElementById("addPictureFormContainer");
   const addPictureButton = document.getElementById("addPicture");
   const greyBar = document.getElementById("greyBar");
+  const greyBarValidate = document.getElementById("greyBarValidate");
 
   if (!galleryContainer || !formContainer) {
     console.error("Erreur : les éléments n'ont pas été trouvés !");
@@ -103,7 +104,7 @@ function toggleForm(showForm) {
     if (titleGallery) titleGallery.style.display = "none";
     if (addPictureButton) addPictureButton.style.display = "none";
     if (greyBar) greyBar.style.display = "none";
-
+    if (greyBarValidate) greyBarValidate.style.display = "block";
     chargerCategories();
   } else {
     formContainer.style.display = "none";
@@ -111,6 +112,7 @@ function toggleForm(showForm) {
     if (titleGallery) titleGallery.style.display = "block";
     if (addPictureButton) addPictureButton.style.display = "block";
     if (greyBar) greyBar.style.display = "block";
+    if (greyBarValidate) greyBarValidate.style.display = "none";
 
     dialogGallery.innerHTML = "";
     afficherWorksDialog();
