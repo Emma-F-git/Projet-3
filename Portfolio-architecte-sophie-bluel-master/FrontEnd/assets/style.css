@@ -264,7 +264,6 @@ li:hover {
 
 input[type="submit"],
 #addPicture,
-#validatePicture,
 #addPictureBtn {
   font-family: "Syne";
   font-weight: 700;
@@ -433,22 +432,33 @@ figure.work img {
 
 /*Affichage du bouton ajouter photos*/
 #addPicture:hover,
-#validatePicture:hover,
 #addPictureBtn:hover {
   background-color: #144a3d;
 }
 
-#addPicture,
-#validatePicture {
+#addPicture {
   display: block;
   padding: 15px;
   border: none;
 }
 
 #validatePicture:disabled {
-  background-color: #ccc;
+  background-color: #a7a7a7;
   cursor: not-allowed;
   opacity: 0.6;
+}
+
+#validatePicture {
+  font-family: "Syne";
+  font-weight: 700;
+  color: white;
+  background-color: #1d6154;
+  margin: 0.4em;
+  text-align: center;
+  border-radius: 60px;
+  border: 1px solid;
+  font-size: 16px;
+  height: 37px;
 }
 
 /* Centrer la modale */

@@ -206,6 +206,9 @@ const imageInput = document.getElementById("hidenFileInput");
 const titleInput = document.getElementById("title");
 const categorySelect = document.getElementById("category");
 const validateButton = document.getElementById("validatePicture");
+const titleInput = document.getElementById("title");
+const categorySelect = document.getElementById("category");
+
 document
   .getElementById("addProjectForm")
   .addEventListener("submit", async (event) => {

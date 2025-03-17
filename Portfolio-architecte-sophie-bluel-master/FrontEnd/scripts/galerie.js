@@ -80,7 +80,7 @@ async function afficherWorks() {
 }
 
 function filterGallery() {
-  const allWorks = document.querySelectorAll(".work");
+  const allWorks = document.querySelectorAll("#gallery .work");
 
   allWorks.forEach((work) => {
     const workCategory = Number(work.dataset.categoryId);
