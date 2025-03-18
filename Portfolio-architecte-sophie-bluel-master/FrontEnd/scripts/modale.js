@@ -90,13 +90,12 @@ function toggleForm(showForm) {
   const addPictureButton = document.getElementById("addPicture");
   const greyBar = document.getElementById("greyBar");
   const greyBarValidate = document.getElementById("greyBarValidate");
+  const titleGallery = document.querySelector("dialog h3");
 
   if (!galleryContainer || !formContainer) {
     console.error("Erreur : les éléments n'ont pas été trouvés !");
     return;
   }
-
-  const titleGallery = document.querySelector("dialog h3");
 
   if (showForm) {
     galleryContainer.style.display = "none";
