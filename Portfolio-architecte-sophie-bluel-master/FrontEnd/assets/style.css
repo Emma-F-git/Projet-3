@@ -618,7 +618,7 @@ button.deleteBtn i {
 
 #greyBar,
 #greyBarValidate {
-  height: 2px;
+  height: 1px;
   background-color: #b3b3b3;
   width: 420px;
   max-width: 80%;
