@@ -37,6 +37,7 @@ if (token) {
 
       works.forEach((work) => {
         const figure = document.createElement("figure");
+        figure.setAttribute("data-id", work.id);
         const image = document.createElement("img");
         const figcaption = document.createElement("figcaption");
         const editButton = document.createElement("button");
@@ -90,31 +91,27 @@ if (token) {
     const greyBar = document.getElementById("greyBar");
     const greyBarValidate = document.getElementById("greyBarValidate");
     const titleGallery = document.querySelector("dialog h3");
+    let isDisplayBlock = showForm ? "none" : "block";
+    let isDisplayGrid = showForm ? "none" : "grid";
+    let isDisplayInverted = showForm ? "block" : "none";
 
     if (!galleryContainer || !formContainer) {
       console.error("Erreur : les éléments n'ont pas été trouvés !");
       return;
     }
+    displayHtmlElement(galleryContainer, isDisplayGrid);
+    displayHtmlElement(formContainer, isDisplayInverted);
+    displayHtmlElement(titleGallery, isDisplayBlock);
+    displayHtmlElement(addPictureButton, isDisplayBlock);
+    displayHtmlElement(greyBar, isDisplayBlock);
+    displayHtmlElement(greyBarValidate, isDisplayInverted);
 
-    if (showForm) {
-      galleryContainer.style.display = "none";
-      formContainer.style.display = "block";
-      if (titleGallery) titleGallery.style.display = "none";
-      if (addPictureButton) addPictureButton.style.display = "none";
-      if (greyBar) greyBar.style.display = "none";
-      if (greyBarValidate) greyBarValidate.style.display = "block";
-      chargerCategories();
-    } else {
-      formContainer.style.display = "none";
-      galleryContainer.style.display = "grid";
-      if (titleGallery) titleGallery.style.display = "block";
-      if (addPictureButton) addPictureButton.style.display = "block";
-      if (greyBar) greyBar.style.display = "block";
-      if (greyBarValidate) greyBarValidate.style.display = "none";
+    isDisplayBlock ? chargerCategories() : (dialogGallery.innerHTML = "");
+    isDisplayBlock === "block" && afficherWorksDialog();
+  }
 
-      dialogGallery.innerHTML = "";
-      afficherWorksDialog();
-    }
+  function displayHtmlElement(element, isDisplayed) {
+    return (element.style.display = isDisplayed);
   }
 
   /*Le bouton « Modifier » ouvre la modale dialog*/
@@ -143,6 +140,23 @@ if (token) {
           "Content-Type": "application/json",
         },
       });
+
+      if (!response.ok) {
+        throw new Error("Échec de la suppression de l'image");
+      }
+
+      const figureToDelete = document.querySelector(`[data-id='${workId}']`);
+      if (figureToDelete) {
+        figureToDelete.remove();
+      }
+
+      const mainGalleryItem = document.querySelector(
+        `#gallery [data-id='${workId}']`
+      );
+      if (mainGalleryItem) {
+        mainGalleryItem.remove();
+      }
+
       const successDeletePicture = document.getElementById(
         "successDeletePicture"
       );
@@ -151,10 +165,6 @@ if (token) {
         successDeletePicture.style.display = "none";
       }, 6000);
       afficherWorksDialog();
-
-      if (!response.ok) {
-        throw new Error("Échec de la suppression de l'image");
-      }
     } catch (error) {
       console.error("Erreur lors de la suppression :", error);
     }
@@ -290,6 +300,7 @@ if (token) {
   function afficherNouvelleImage(work) {
     const gallery = document.getElementById("gallery");
     const figure = document.createElement("figure");
+    figure.setAttribute("data-id", work.id);
     const image = document.createElement("img");
     const figcaption = document.createElement("figcaption");
 
