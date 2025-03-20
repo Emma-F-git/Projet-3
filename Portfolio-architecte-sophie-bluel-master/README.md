@@ -8,7 +8,7 @@ Ce repo git contient les 2 briques logicielles du projet
 - Frontend
 - Backend
 
-## Pour le lancer le code
+## Pour lancer le code
 ### Backend
 Ouvrir le dossier Backend et lire le README.md
 
