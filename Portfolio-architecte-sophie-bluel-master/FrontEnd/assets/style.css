@@ -291,7 +291,7 @@ button {
 }
 
 /*Filtres galerie*/
-#filters {
+.filters {
   display: flex;
   justify-content: center;
   padding: 20px;
@@ -334,17 +334,12 @@ a {
   text-decoration: none;
 }
 
-#logout {
-  display: none;
-}
-
 #portfolio {
   position: relative;
 }
 
 /*Affichage d'une barre Mode édition en haut de l'écran lorsque l'utilisateur est connecté*/
 #topBarEdit {
-  display: none;
   background: black;
   color: white;
   text-align: center;
@@ -358,7 +353,6 @@ a {
   position: absolute;
   right: 33%;
   top: 0.4%;
-  display: none;
   background: none;
   border: none;
 }
@@ -397,7 +391,6 @@ dialog img {
 }
 
 #dialog-gallery {
-  display: grid;
   grid-template-columns: repeat(5, 1fr);
   padding: 2em;
   width: 100%;
@@ -491,7 +484,6 @@ figure.work img {
 
 /* Cacher le formulaire d'ajout par défaut */
 #addPictureFormContainer {
-  display: none;
   padding: 0rem 4rem;
 }
 
@@ -630,4 +622,12 @@ button.deleteBtn i {
 
 #greyBarValidate {
   bottom: 22%;
+}
+
+.showGrid {
+  display: grid;
+}
+
+.hide {
+  display: none !important;
 }

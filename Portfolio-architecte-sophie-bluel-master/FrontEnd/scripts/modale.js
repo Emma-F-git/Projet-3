@@ -13,13 +13,15 @@ const dialogGallery = document.getElementById("dialog-gallery");
 
 /*Affichage une fois l'utilisateur connecté de l'interface en mode édition*/
 if (token) {
-  login.style.display = "none"; /*bouton login non affiché*/
-  logout.style.display = "block"; /*bouton logout affiché*/
-  filters.style.display = "none"; /*boutons filtres galerie non affichés*/
-  topBarEdit.style.display =
-    "block"; /*Affichage de la barre en haut "Mode édition"*/
-  showButton.style.display =
-    "block"; /*Affichage de la boite de dialog "Modifier"*/
+  login.classList.add("hide"); /*bouton login non affiché*/
+  logout.classList.remove("hide"); /*bouton logout affiché*/
+  filters.classList.add("hide"); /*boutons filtres galerie non affichés*/
+  topBarEdit.classList.remove(
+    "hide"
+  ); /*Affichage de la barre en haut "Mode édition"*/
+  showButton.classList.remove(
+    "hide"
+  ); /*Affichage de la boite de dialog "Modifier"*/
 
   /*Lors de la déconnexion, suppression du token, rechargement de la page*/
   document.getElementById("logout").addEventListener("click", (event) => {
@@ -91,27 +93,29 @@ if (token) {
     const greyBar = document.getElementById("greyBar");
     const greyBarValidate = document.getElementById("greyBarValidate");
     const titleGallery = document.querySelector("dialog h3");
-    let isDisplayBlock = showForm ? "none" : "block";
-    let isDisplayGrid = showForm ? "none" : "grid";
-    let isDisplayInverted = showForm ? "block" : "none";
+    let elementsGallery = [
+      galleryContainer,
+      titleGallery,
+      addPictureButton,
+      greyBar,
+    ];
+    let elementsForm = [formContainer, greyBarValidate, validatePicture];
 
     if (!galleryContainer || !formContainer) {
       console.error("Erreur : les éléments n'ont pas été trouvés !");
       return;
     }
-    displayHtmlElement(galleryContainer, isDisplayGrid);
-    displayHtmlElement(formContainer, isDisplayInverted);
-    displayHtmlElement(titleGallery, isDisplayBlock);
-    displayHtmlElement(addPictureButton, isDisplayBlock);
-    displayHtmlElement(greyBar, isDisplayBlock);
-    displayHtmlElement(greyBarValidate, isDisplayInverted);
-
-    isDisplayBlock ? chargerCategories() : (dialogGallery.innerHTML = "");
-    isDisplayBlock === "block" && afficherWorksDialog();
-  }
-
-  function displayHtmlElement(element, isDisplayed) {
-    return (element.style.display = isDisplayed);
+    if (showForm) {
+      elementsGallery.forEach((element) => element.classList.add("hide"));
+      elementsForm.forEach((element) => element.classList.remove("hide"));
+      galleryContainer.classList.remove("showGrid");
+    } else {
+      elementsGallery.forEach((element) => element.classList.remove("hide"));
+      elementsForm.forEach((element) => element.classList.add("hide"));
+      galleryContainer.classList.add("showGrid");
+      afficherWorksDialog();
+    }
+    chargerCategories();
   }
 
   /*Le bouton « Modifier » ouvre la modale dialog*/
@@ -181,7 +185,7 @@ if (token) {
     );
     const imagePreview = document.getElementById("imagePreview");
     const previewImage = document.getElementById("previewImage");
-    const validateButton = document.getElementById("validatePicture");
+    const validatePicture = document.getElementById("validatePicture");
     const title = document.getElementById("title");
     const category = document.getElementById("category");
 
@@ -192,9 +196,9 @@ if (token) {
 
       /*Activer le bouton Valider après la sélection de l'image*/
       if (imageFile && titleValue && categoryValue) {
-        validateButton.removeAttribute("disabled");
+        validatePicture.removeAttribute("disabled");
       } else {
-        validateButton.setAttribute("disabled", "true");
+        validatePicture.setAttribute("disabled", "true");
       }
     }
 
@@ -240,7 +244,7 @@ if (token) {
   const imageInput = document.getElementById("hidenFileInput");
   const titleInput = document.getElementById("title");
   const categorySelect = document.getElementById("category");
-  const validateButton = document.getElementById("validatePicture");
+  const validatePicture = document.getElementById("validatePicture");
 
   document
     .getElementById("addProjectForm")
@@ -280,7 +284,7 @@ if (token) {
           imageInput.value = "";
           titleInput.value = "";
           categorySelect.selectedIndex = 0;
-          validateButton.setAttribute("disabled", "true");
+          validatePicture.setAttribute("disabled", "true");
           toggleForm(false);
 
           const successMessage = document.getElementById("successAddPicture");

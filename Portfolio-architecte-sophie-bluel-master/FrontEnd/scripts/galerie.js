@@ -26,6 +26,7 @@ function createButton(id, name, classCSS) {
 /*Création du bouton "tous"*/
 const filterButton = document.createElement("div");
 filterButton.id = "filters";
+filterButton.classList.add("filters");
 selectionElement.after(filterButton);
 
 async function afficherCategories() {
@@ -71,8 +72,7 @@ async function afficherWorks() {
 
     filterGallery();
   } catch (error) {
-    errorMessage.textContent =
-      "Une erreur est survenue. Veuillez réessayer plus tard.";
+    console.error("Erreur affichage galerie: " + error.message);
   }
 }
 

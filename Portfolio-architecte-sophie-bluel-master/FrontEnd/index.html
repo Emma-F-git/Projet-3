@@ -20,7 +20,7 @@
     <script type="module" src="scripts/modale.js"></script>
   </head>
   <body>
-    <div id="topBarEdit">
+    <div class="hide" id="topBarEdit">
       <i class="fa-solid fa-pen-to-square"></i>Mode édition
     </div>
     <header>
@@ -30,7 +30,7 @@
           <li>projets</li>
           <li>contact</li>
           <li id="login"><a href="login.html">login</a></li>
-          <li id="logout"><a href="logout.html">logout</a></li>
+          <li class="hide" id="logout"><a href="logout.html">logout</a></li>
           <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
         </ul>
       </nav>
@@ -62,7 +62,7 @@
       <section id="portfolio">
         <div id="TitleMainGallery">
           <h2>Mes Projets</h2>
-          <button id="showDialog">
+          <button class="hide" id="showDialog">
             <i class="fa-solid fa-pen-to-square"></i>modifier
           </button>
         </div>
@@ -73,10 +73,10 @@
           <h3>Galerie photo</h3>
           <div id="successAddPicture">Photo ajoutée !</div>
           <div id="successDeletePicture">Photo supprimée !</div>
-          <div id="dialog-gallery" class="gallery"></div>
+          <div id="dialog-gallery" class="gallery showGrid"></div>
           <div id="greyBar"></div>
           <button type="button" id="addPicture">Ajouter une photo</button>
-          <div id="addPictureFormContainer" class="form-container">
+          <div id="addPictureFormContainer" class="form-container hide">
             <button type="button" id="backToGallery">
               <i class="fa-solid fa-arrow-left"></i>
             </button>
@@ -111,8 +111,8 @@
               <select id="category" name="category" required>
                 <option value="" disabled selected>" "</option>
               </select>
-              <div id="greyBarValidate"></div>
-              <button type="submit" id="validatePicture" disabled>
+              <div class="hide" id="greyBarValidate"></div>
+              <button class="hide" type="submit" id="validatePicture" disabled>
                 Valider
               </button>
             </form>
