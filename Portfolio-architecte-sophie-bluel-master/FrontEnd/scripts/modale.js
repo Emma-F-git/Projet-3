@@ -63,8 +63,9 @@ if (token) {
         dialogGallery.appendChild(figure);
       });
     } catch (error) {
-      errorMessage.textContent =
-        "Une erreur est survenue. Veuillez réessayer plus tard.";
+      console.error(
+        "Erreur affichage galerie dans la boîte de dialogue: " + error.message
+      );
     }
   }
 
@@ -79,8 +80,7 @@ if (token) {
         .map(({ id, name }) => `<option value="${id}">${name}</option>`)
         .join("");
     } catch (error) {
-      errorMessage.textContent =
-        "Une erreur est survenue. Veuillez réessayer plus tard.";
+      console.error("Erreur lors du chargement des catégories :", error);
     }
   }
 
@@ -96,8 +96,7 @@ if (token) {
     let isDisplayInverted = showForm ? "block" : "none";
 
     if (!galleryContainer || !formContainer) {
-      errorMessage.textContent =
-        "Une erreur est survenue. Veuillez réessayer plus tard.";
+      console.error("Erreur : les éléments n'ont pas été trouvés !");
       return;
     }
     displayHtmlElement(galleryContainer, isDisplayGrid);
@@ -167,8 +166,7 @@ if (token) {
       }, 6000);
       afficherWorksDialog();
     } catch (error) {
-      errorMessage.textContent =
-        "Une erreur est survenue. Veuillez réessayer plus tard.";
+      console.error("Erreur lors de la suppression :", error);
     }
   }
 
@@ -294,8 +292,8 @@ if (token) {
           alert("Erreur lors de l'ajout de la photo.");
         }
       } catch (error) {
-        errorMessage.textContent =
-          "Une erreur est survenue. Veuillez réessayer plus tard.";
+        console.error("Erreur d'envoi à l'API:", error);
+        alert("Une erreur est survenue.");
       }
     });
 
