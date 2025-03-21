@@ -6,6 +6,7 @@ let activeFilters = [];
 
 /*Insertion des boutons de filtrage après le titre h2 portfolio*/
 const selectionElement = document.querySelector("#portfolio h2");
+const gallery = document.getElementById("gallery");
 
 /*Création d'un bouton de filtre*/
 function createButton(id, name, classCSS) {
@@ -16,7 +17,6 @@ function createButton(id, name, classCSS) {
   }
   button.setAttribute("data-category-id", id);
   button.addEventListener("click", () => {
-    console.log(`Filtre cliqué: ${id}`);
     toggleFilter(button, id);
     filterGallery();
   });
@@ -34,7 +34,6 @@ async function afficherCategories() {
     /*Récupération des données sur l'API et conversion de la réponse en format JSON*/
     const reponse = await fetch(`${API_URL}categories`);
     const categories = await reponse.json();
-    console.log(categories);
     /*Création d'un bouton "tous" qui n'est pas dans l'API*/
     filters.appendChild(createButton(0, "Tous", "active"));
     /* Boutons récupérés par l'API*/
@@ -42,11 +41,9 @@ async function afficherCategories() {
       filters.appendChild(createButton(categorie.id, categorie.name, null));
     });
   } catch (error) {
-    console.log("Erreur dans le filtre par catégorie: " + error.message);
+    console.error("Erreur dans le filtre par catégorie: " + error.message);
   }
 }
-
-const gallery = document.getElementById("gallery");
 
 async function afficherWorks() {
   try {
@@ -55,7 +52,6 @@ async function afficherWorks() {
     const works = await reponse.json();
     /*Suppression de galerie déjà existante en HTML*/
     gallery.innerHTML = "";
-    console.log(works);
 
     /*Création dynamique des filtres*/
     works.forEach((work) => {
@@ -75,7 +71,8 @@ async function afficherWorks() {
 
     filterGallery();
   } catch (error) {
-    console.log("Erreur affichage galerie: " + error.message);
+    errorMessage.textContent =
+      "Une erreur est survenue. Veuillez réessayer plus tard.";
   }
 }
 
@@ -96,7 +93,6 @@ function filterGallery() {
 /*Affichage lors du clic du filtre*/
 function toggleFilter(button, categoryId) {
   const allButtons = document.querySelectorAll("#filters button");
-  console.log(activeFilters);
 
   if (categoryId === 0) {
     /* Si le bouton "Tous" est cliqué, désactive tous les autres filtres*/

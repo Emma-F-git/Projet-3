@@ -6,13 +6,9 @@ const form = document.querySelector("form");
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
-  console.log("Il n’y a pas eu de rechargement de page");
 
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
-
-  console.log(email);
-  console.log(password);
 
   const chargeUtile = JSON.stringify({ email, password });
   const errorMessage = document.getElementById("errorMessage");
@@ -37,6 +33,7 @@ form.addEventListener("submit", async (event) => {
       window.location.replace("index.html");
     }
   } catch (error) {
-    console.error("Erreur lors de la requête :", error);
+    errorMessage.textContent =
+      "Une erreur est survenue. Veuillez réessayer plus tard.";
   }
 });
