@@ -12,16 +12,18 @@ const favDialog = document.getElementById("favDialog");
 const dialogGallery = document.getElementById("dialog-gallery");
 
 /*Affichage une fois l'utilisateur connecté de l'interface en mode édition*/
+
 if (token) {
-  login.classList.add("hide"); /*bouton login non affiché*/
-  logout.classList.remove("hide"); /*bouton logout affiché*/
-  filters.classList.add("hide"); /*boutons filtres galerie non affichés*/
-  topBarEdit.classList.remove(
-    "hide"
-  ); /*Affichage de la barre en haut "Mode édition"*/
-  showButton.classList.remove(
-    "hide"
-  ); /*Affichage de la boite de dialog "Modifier"*/
+  /*bouton login non affiché*/
+  login.classList.add("hide");
+  /*bouton logout affiché*/
+  logout.classList.remove("hide");
+  /*boutons filtres galerie non affichés*/
+  filters.classList.add("hide");
+  /*Affichage de la barre en haut "Mode édition"*/
+  topBarEdit.classList.remove("hide");
+  /*Affichage de la boite de dialog "Modifier"*/
+  showButton.classList.remove("hide");
 
   /*Lors de la déconnexion, suppression du token, rechargement de la page*/
   document.getElementById("logout").addEventListener("click", (event) => {

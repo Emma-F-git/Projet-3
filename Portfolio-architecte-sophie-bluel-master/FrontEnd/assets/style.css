@@ -631,3 +631,16 @@ button.deleteBtn i {
 .hide {
   display: none !important;
 }
+
+/*Media queries*/
+@media (max-width: 1024px) {
+  #showDialog {
+    display: flex;
+    flex-wrap: wrap;
+    position: static;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    padding: 2em;
+  }
+}

@@ -33,7 +33,6 @@ form.addEventListener("submit", async (event) => {
       window.location.replace("index.html");
     }
   } catch (error) {
-    errorMessage.textContent =
-      "Une erreur est survenue. Veuillez réessayer plus tard.";
+    console.error("Erreur lors de la requête :", error);
   }
 });
